@@ -3,6 +3,8 @@ package cz.mmaso.apptest10
 import app.cash.sqldelight.ColumnAdapter
 import app.cash.sqldelight.async.coroutines.awaitAsList
 import cz.mmaso.apptest10.sqldelight.hockey.utils.DbHelper
+import cz.mmaso.apptest10.sqldelight.hockey.utils.DbRepoImpl
+import cz.mmaso.apptest10.sqldelight.hockey.utils.IDbRepo
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
@@ -12,6 +14,10 @@ class WasmPlatform: Platform {
 }
 
 actual fun getPlatform(): Platform = WasmPlatform()
+
+actual fun getRepo() : IDbRepo {
+    return DbRepoImpl()
+}
 
 actual typealias DbDate = Date
 
@@ -30,7 +36,7 @@ actual fun testDb() : Boolean {
             println("All:")
             val pl = database.playerQueries.selectAll().awaitAsList()
             pl.forEach { player ->
-                println( player )
+                println( "- ${player.name}, ${player.last_name}, ${player.birth_date.toDateString()}" )
             }
 
             val players = database.playerQueries.forTeam(-1).awaitAsList()

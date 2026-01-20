@@ -68,30 +68,18 @@ kotlin {
             implementation("app.cash.sqldelight:primitive-adapters:2.2.1")
             implementation(devNpm("copy-webpack-plugin", "9.1.0"))
 
-            implementation(npm("sql.js", "1.8.0"))
-            implementation(npm("dateformat", "3.0.3"))
+            implementation(npm("sql.js", "1.13.0")) // 1.8.0
+            implementation(npm("dateformat", "5.0.3")) // 3.0.3
             implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.2.1"))
             implementation(npm("idb-keyval", "6.2.1"))
-
-            /*
-            implementation("app.cash.sqldelight:primitive-adapters:2.2.1")
-            implementation("org.jetbrains.kotlinx:kotlinx-html-js:0.12.0")
-            implementation(npm("copy-webpack-plugin", "9.1.0"))
-            implementation(npm("dateformat", "3.0.3"))
-            implementation(npm("sql.js", "1.8.0"))
-
-            // def sqljsWorker = file("${gradle.includedBuild('sqldelight').projectDir}/drivers/web-worker-driver/sqljs")
-            // var sqljsWorker = file("${gradle.includedBuild("sqldelight").projectDir}/drivers/web-worker-driver/sqljs")
-            implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.2.1"))
-            */
         }
         wasmJsMain.dependencies {
             implementation("app.cash.sqldelight:web-worker-driver:2.2.1")
             implementation("app.cash.sqldelight:primitive-adapters:2.2.1")
             implementation(devNpm("copy-webpack-plugin", "9.1.0"))
 
-            implementation(npm("sql.js", "1.8.0"))
-            implementation(npm("dateformat", "3.0.3"))
+            implementation(npm("sql.js", "1.13.0"))
+            implementation(npm("dateformat", "5.0.3"))
             implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.2.1"))
             implementation(npm("idb-keyval", "6.2.1"))
         }

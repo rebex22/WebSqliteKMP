@@ -14,18 +14,33 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import cz.mmaso.apptest10.sqldelight.hockey.utils.Player
+import cz.mmaso.apptest10.sqldelight.hockey.utils.SelectAll
+import kotlinx.coroutines.Dispatchers
 import org.jetbrains.compose.resources.painterResource
 
-import apptest10.composeapp.generated.resources.Res
-import apptest10.composeapp.generated.resources.compose_multiplatform
+import websqlitekmp.composeapp.generated.resources.Res
+import websqlitekmp.composeapp.generated.resources.compose_multiplatform
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 @Composable
 @Preview
 fun App() {
+    val scope = MainScope()
+    val players = remember {  mutableStateOf( mutableListOf<SelectAll>()) }
+
     LaunchedEffect( true ) {
         testDb()
+
+        /*
+        scope.launch {
+            val repo = getRepo()
+            val pl = repo.selectAllPlayers()
+
+            players.value.clear()
+            players.value.addAll(pl)
+        }*/
     }
 
     MaterialTheme {
