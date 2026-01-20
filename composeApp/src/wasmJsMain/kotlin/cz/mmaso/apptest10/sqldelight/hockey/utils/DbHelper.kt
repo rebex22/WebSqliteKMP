@@ -35,6 +35,20 @@ class DbHelper {
         driver = createDefaultWebWorkerDriver()
     }
 
+    fun getDriver() : SqlDriver {
+        return driver
+    }
+
+    suspend fun getDb( seedData: Boolean = false ) : HockeyDb {
+        if (db == null) {
+            db = createDb(driver)
+            if( seedData ) {
+                seedData(db!!)
+            }
+        }
+        return db!!
+    }
+
     suspend fun withDatabase(block: suspend (HockeyDb) -> Unit): Unit = mutex.withLock {
         if (db == null) {
             db = createDb(driver)
@@ -49,7 +63,6 @@ class DbHelper {
 
     private suspend fun createDb(driver: SqlDriver): HockeyDb {
         HockeyDb.Schema.awaitCreate(driver)
-
         return HockeyDb(
             driver = driver,
             playerAdapter = Player.Adapter(

@@ -29,10 +29,12 @@ import kotlinx.coroutines.launch
 fun App() {
     val scope = MainScope()
     val players = remember {  mutableStateOf( mutableListOf<SelectAll>()) }
+    val db = getRepo()
+
+    // val pl = db.getAllTasks().collectAsState( emptyList())
 
     LaunchedEffect( true ) {
         testDb()
-
         /*
         scope.launch {
             val repo = getRepo()

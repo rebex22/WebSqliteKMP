@@ -42,6 +42,20 @@ class DbHelper {
         )*/
     }
 
+    fun getDriver() : SqlDriver {
+        return driver
+    }
+
+    suspend fun getDb( seedData: Boolean = false ) : HockeyDb {
+        if (db == null) {
+            db = createDb(driver)
+            if( seedData ) {
+                seedData(db!!)
+            }
+        }
+        return db!!
+    }
+
     suspend fun withDatabase(block: suspend (HockeyDb) -> Unit): Unit = mutex.withLock {
         if (db == null) {
             db = createDb(driver)

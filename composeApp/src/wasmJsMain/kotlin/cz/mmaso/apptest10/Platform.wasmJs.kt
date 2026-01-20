@@ -5,6 +5,8 @@ import app.cash.sqldelight.async.coroutines.awaitAsList
 import cz.mmaso.apptest10.sqldelight.hockey.utils.DbHelper
 import cz.mmaso.apptest10.sqldelight.hockey.utils.DbRepoImpl
 import cz.mmaso.apptest10.sqldelight.hockey.utils.IDbRepo
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
@@ -25,6 +27,8 @@ actual class DateAdapter : ColumnAdapter<DbDate, Long> {
     override fun encode(value: DbDate) = value.getTime().toLong()
     override fun decode(databaseValue: Long) = DbDate(databaseValue.toDouble())
 }
+
+actual val IoDispatcher: CoroutineDispatcher = Dispatchers.Default
 
 actual fun testDb() : Boolean {
     val scope    = MainScope()

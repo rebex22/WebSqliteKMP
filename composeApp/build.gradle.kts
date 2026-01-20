@@ -66,6 +66,7 @@ kotlin {
         jsMain.dependencies {
             implementation("app.cash.sqldelight:web-worker-driver:2.2.1")
             implementation("app.cash.sqldelight:primitive-adapters:2.2.1")
+            implementation("app.cash.sqldelight:coroutines-extensions:2.2.1")
             implementation(devNpm("copy-webpack-plugin", "9.1.0"))
 
             implementation(npm("sql.js", "1.13.0")) // 1.8.0
@@ -76,6 +77,7 @@ kotlin {
         wasmJsMain.dependencies {
             implementation("app.cash.sqldelight:web-worker-driver:2.2.1")
             implementation("app.cash.sqldelight:primitive-adapters:2.2.1")
+            implementation("app.cash.sqldelight:coroutines-extensions:2.2.1")
             implementation(devNpm("copy-webpack-plugin", "9.1.0"))
 
             implementation(npm("sql.js", "1.13.0"))
